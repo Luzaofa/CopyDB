@@ -1,0 +1,7 @@
+current time：2019-01-04.17:03:28; Pre-update database status：{'24': 5606, '09': 5606}
+Downloading：TB_OBJECT_1570； time cost：0.409583334128S； SQL：bcp "select * from wind.dbo.TB_OBJECT_1570 where RP_GEN_DATETIME >= '2018-11-21' and RP_GEN_DATETIME <= '2019-01-03' " queryout data/2019-01-04/TB_OBJECT_1570.out -S 192.168.205.9 -U cfglzx -P "*[Wealth&(20161028]" -n 
+Successful data download
+Uploading：TB_OBJECT_1570； time cost：0.263399998347S； SQL：bcp wind.dbo.TB_OBJECT_1570 in data/2019-01-04/TB_OBJECT_1570.out -T -n 
+Successful data upload
+current time：2019-01-04.17:04:09; Updated database status：{'24': 5606, '09': 5606}
+
