@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # encoding: utf-8
 # Time    : 1/3/2019 11:18 AM
 # Author  : Luzaofa
@@ -61,7 +61,6 @@ class UpdateDB(DB_Helper):
         object_id = {}
         mass = 'Error'
         sql = windConfig.count_db_number_id.format(tableName=tableName, startTime=startTime, endTime=endTime)
-##        print sql
         for key, value in windConfig.DB_Mass.items():
             data = UpdateDB.select(hose=value['host'], user=value['user'], password=value['password'],
                                    database=value['database'], charset=value['charset'], sql=sql)
@@ -130,14 +129,7 @@ class UpdateDB(DB_Helper):
         outFile = '{path}/{fileName}.out'.format(path=self.check_file('data'), fileName=tableName)
         if os.path.exists(outFile):
             os.remove(outFile)
-        # if tableName != 'TB_OBJECT_9003':
-        #     dis = self.count_db_number(tableName=tableName, startTime=startTime, endTime=endTime)
-        #     self.log('tableName: ' + tableName + ', current time：' + time.strftime("%Y-%m-%d.%H:%M:%S",
-        #                                                                            time.localtime()) + '; Pre-update database status：' + str(
-        #         dis) + '\n', logName)
-        #     if dis['09'] == dis['21']:
-        #         self.log('The same data! Update Successful!' + '\n', logName)
-        #         return False
+
         if len(diff_ids) == 1:
             diff_ids = str(diff_ids).replace(',', '')
         sql = windConfig.download_data.format(tableName=tableName, startTime=startTime, endTime=endTime,
@@ -233,13 +225,6 @@ class UpdateDB(DB_Helper):
         pool.close()
         pool.join()
 
-    # def data_mp(self, pro, tableNames, logName, func, startTime, endTime):
-    #     for tableName in tableNames:
-    #         print 'Checking: {0}'.format(tableName)
-    #         code = func(tableName, logName, startTime, endTime)
-    #         if not code:
-    #             continue
-
     def main_mp(self, tableNames, logName, startTime, endTime):
 
         main_start = time.time()
@@ -281,8 +266,6 @@ if __name__ == '__main__':
     logName = '{path}/{fileName}.txt'.format(path=helper.check_file('check'),
                                              fileName=time.strftime("%H-%M-%S", time.localtime()))
     helper.main_mp(tableNames, logName, startTime, endTime)
-    # print 'end'
-    # time.sleep(10)
 
     sched = BlockingScheduler()
 
